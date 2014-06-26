@@ -1,15 +1,11 @@
 #!env/bin
-
-import os
-import sys
 import socket, struct
-import location_info
 import global_function as func
 import urllib2
 import json
-import types
 
-duan = "------------------------------------fengefu"
+FILE = open("data/ip_lib.txt", "w")
+
 def ip_to_long(ip):
     """
     Convert an IP string to long
@@ -38,17 +34,16 @@ def request_url(url):
 
 def parse_json(data):
 	value = json.loads(data)
-	rootlist = value.keys()
-	print rootlist
-	print duan  
-	for rootkey in rootlist:
-		print rootkey
-    	print duan  
-    	subvalue = value[rootkey]  
-    	print subvalue  
-    	print duan  
-    	for subkey in subvalue:  
-		print subkey,subvalue[subkey]
+    	subvalue = value["data"]
+    	location_info = ""
+    	for subkey in subvalue:
+		 location_info = "%s%s:%s|" % (location_info,subkey, subvalue[subkey])
+	write_to_file(location_info)
+	print location_info
+
+def write_to_file(location_info):
+	location_info = location_info.encode('gb2312')
+	FILE.write(location_info)
 
 def main():
     api = func.TAOBAO_API
@@ -56,5 +51,9 @@ def main():
     for long_ip in xrange(ip_range[0], ip_range[1]):
     	parse_json(request_url(get_location(api, long_ip)))
 
+def end():
+	FILE.close()
+
 if __name__ == '__main__':
-    main()
+	main()
+	end()
