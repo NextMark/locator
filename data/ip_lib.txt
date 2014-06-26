@@ -1,1 +1,0 @@
-ip:119.40.36.89|city:北京市|area_id:100000|region_id:110000|area:华北|city_id:110000|country:中国|region:北京市|isp:|country_id:CN|county:|isp_id:-1|county_id:-1|

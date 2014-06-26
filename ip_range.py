@@ -39,7 +39,6 @@ def parse_json(data):
     	for subkey in subvalue:
 		 location_info = "%s%s:%s|" % (location_info,subkey, subvalue[subkey])
 	write_to_file(location_info + "\n")
-	print location_info
 
 def write_to_file(location_info):
 	location_info = location_info.encode('gb2312')
