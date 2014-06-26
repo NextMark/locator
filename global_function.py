@@ -2,11 +2,11 @@ import ConfigParser
 
 
 def get_config(section, conf_name):
-    global config 
-    config = ConfigParser.ConfigParser()
-    config.read("conf/config.ini")
-    conf = config.get(section, conf_name)
-    return conf
+	global config 
+	config = ConfigParser.ConfigParser()
+	config.read("conf/config.ini")
+	conf = config.get(section, conf_name)
+	return conf
 
 def set_config(section, key, value):
 	config.set(section, key, value)

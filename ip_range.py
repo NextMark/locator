@@ -8,12 +8,11 @@ import time
 FILE = open("data/ip_lib.txt", "w")
 
 def ip_to_long(ip):
-    """
-    Convert an IP string to long
-    """
-    packedIP = socket.inet_aton(ip)
-    return struct.unpack("!L", packedIP)[0]
-
+	"""
+    	Convert an IP string to long
+    	"""
+    	packedIP = socket.inet_aton(ip)
+    	return struct.unpack("!L", packedIP)[0]
 
 def long_to_ip(long_ip):
 	"""
@@ -47,13 +46,13 @@ def write_to_file(location_info):
 	FILE.write(location_info)
 
 def main():
-    api = func.TAOBAO_API
-    ip_range = [ip_to_long(func.IP_START), ip_to_long(func.IP_END)]
-    for long_ip in xrange(ip_range[0], ip_range[1]):
-    	position_ip = long_to_ip(long_ip)
-    	func.set_config("position", "ip", position_ip)
-    	time.sleep(0.1)
-    	parse_json(request_url(get_location(api, long_ip)))
+	api = func.TAOBAO_API
+    	ip_range = [ip_to_long(func.IP_START), ip_to_long(func.IP_END)]
+    	for long_ip in xrange(ip_range[0], ip_range[1]):
+    		position_ip = long_to_ip(long_ip)
+    		func.set_config("position", "ip", position_ip)
+    		time.sleep(0.1)
+    		parse_json(request_url(get_location(api, long_ip)))
 
 def end():
 	FILE.close()
